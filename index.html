@@ -1,21 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Générateur de mots de passe</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
     <h1>Générateur de mots de passe</h1>
-    
-    <label for="length">Longueur du mot de passe :</label>
-    <input type="number" id="length" min="6" max="20" value="8">
-    
-    <button onclick="generatePassword()">Générer</button>
-    
-    <div id="password"></div>
+
+    <div class="output-box">
+      <span id="password" class="password-text" aria-live="polite">—</span>
+      <button id="copy-btn" class="icon-btn" title="Copier" aria-label="Copier le mot de passe" disabled>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="strength-bar" aria-label="Force du mot de passe">
+      <div id="strength-fill" class="strength-fill"></div>
+    </div>
+    <p id="strength-label" class="strength-label" aria-live="polite"></p>
+
+    <div class="control-group">
+      <div class="length-header">
+        <label for="length">Longueur</label>
+        <strong id="length-value">16</strong>
+      </div>
+      <input type="range" id="length" min="4" max="128" value="16" />
+    </div>
+
+    <fieldset class="options">
+      <legend>Caractères inclus</legend>
+      <label><input type="checkbox" id="opt-upper" checked /> Majuscules (A–Z)</label>
+      <label><input type="checkbox" id="opt-lower" checked /> Minuscules (a–z)</label>
+      <label><input type="checkbox" id="opt-digits" checked /> Chiffres (0–9)</label>
+      <label><input type="checkbox" id="opt-symbols" checked /> Symboles (!@#…)</label>
+    </fieldset>
+
+    <button id="generate-btn" class="btn-primary">Générer</button>
   </div>
-  
+
   <script src="script.js"></script>
 </body>
 </html>
